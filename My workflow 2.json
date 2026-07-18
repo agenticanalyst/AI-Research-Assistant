@@ -1,0 +1,183 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -512,
+        -208
+      ],
+      "id": "3679763c-51eb-4f42-824d-816ca99bb4d7",
+      "name": "When chat message received",
+      "webhookId": "84888a77-7dcd-4c6c-859f-eef82209c7cf"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-safeguard-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        16
+      ],
+      "id": "49248ee1-e625-4720-a967-e49b62243799",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "0msAiZpEAZvFqc7o",
+          "name": "Groq account 3"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -272,
+        32
+      ],
+      "id": "657c26ea-1c2f-4a4e-9d41-81e97268baec",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "d6e6aadf-4154-44d6-9b8b-7b8e22b37119",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -32
+      ],
+      "id": "af0856a6-6921-4d9a-ac26-e2a755728b1e",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        176,
+        -64
+      ],
+      "id": "30e8cd2f-c307-4d76-bd5e-538e80d170f6",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an AI Data Analyst.\n\nYour responsibilities:\n- Analyze CSV and Excel files.\n- Find missing values and duplicates.\n- Generate KPIs.\n- Recommend charts.\n- Give business insights.\n- Answer questions about the dataset.\n- Explain results in simple language."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -320,
+        -208
+      ],
+      "id": "0ce64f0e-f0cf-434b-b952-3358c2b0fe4f",
+      "name": "AI Research Assistant"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Research Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "378a61a9-d776-4238-b239-d97e78e8d6ff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fba66b018ccd600a472fd30a8d8be2cf3b597aa5068da45b9ae424c532dd15bb"
+  },
+  "nodeGroups": [],
+  "id": "nLcZnwuc6uPDVXnz",
+  "tags": []
+}
